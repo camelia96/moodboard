@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Design Playground | Collaborative Design Experiments",
-  description: "A collaborative space for design experiments and creative UI explorations. Built with Next.js, Tailwind CSS, and shadcn/ui.",
+  title: "Moodboard | Collaborative Design Inspiration",
+  description: "A collaborative mood board for collecting and sharing visual design inspiration. Discover UI patterns, color palettes, typography, and design ideas.",
 };
 
 export default function RootLayout({

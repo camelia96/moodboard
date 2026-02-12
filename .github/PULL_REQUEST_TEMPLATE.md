@@ -1,31 +1,58 @@
-# 🎨 Design Playground Submission
+# 🚀 Moodboard Feature Contribution
 
-## What's in this playground?
+## Type of change
 
-<!-- Brief description of your playground and what you're exploring -->
+<!-- Check the type that applies -->
 
-## Experiments included
+- [ ] ✨ New feature (non-breaking change that adds functionality)
+- [ ] 🐛 Bug fix (non-breaking change that fixes an issue)
+- [ ] 📝 Documentation update
+- [ ] 🔨 Refactor (code improvement without changing functionality)
+- [ ] ⚡ Performance improvement
+- [ ] 🎨 UI/UX improvement
 
-<!-- List each experiment you've added -->
+## Description
 
-- [ ] Experiment 1: [Name] - [Brief description]
-- [ ] Experiment 2: [Name] - [Brief description]
-- [ ] Experiment 3: [Name] - [Brief description]
+<!-- Describe what this PR does. What problem does it solve? -->
 
-## Preview
+## Changes made
 
-<!-- Add screenshots, GIFs, or screen recordings showing your experiments -->
+<!-- List the specific changes you made -->
+
+-
+-
+-
+
+## Files modified/created
+
+<!-- List key files changed or created -->
+
+**Modified:**
+- `src/app/page.tsx`
+
+**Created:**
+- `src/components/search-bar.tsx`
+
+## How to test
+
+<!-- Describe how reviewers can test your changes -->
+
+1. Start the dev server: `npm run dev`
+2. Navigate to [specific page]
+3. [Specific action to test]
+4. Verify [expected behavior]
+
+## Screenshots / Demo
+
+<!-- Add screenshots, GIFs, or screen recordings showing your changes -->
 <!-- You can drag and drop images directly into this text box -->
+<!-- Remove this section if not applicable -->
 
-## Technical details
+**Before:**
 
-**Playground slug:** `your-name`
-**Tags:**
-<!-- e.g., animations, buttons, cards, interactions -->
 
-**Components created:**
-<!-- List the component files you created -->
-- `ComponentName.tsx`
+**After:**
+
 
 ## Checklist
 
@@ -34,17 +61,22 @@ Before submitting, make sure you've:
 - [ ] Followed the [contribution guidelines](../docs/CONTRIBUTING.md)
 - [ ] Tested locally (`npm run dev`)
 - [ ] Build completes successfully (`npm run build`)
-- [ ] Updated `src/lib/playgrounds.ts` with my metadata
-- [ ] Added components to the registry in `src/app/playground/[designer]/page.tsx`
-- [ ] Components are in my playground folder (`src/playgrounds/my-name/`)
-- [ ] All experiments appear correctly in my playground page
-- [ ] No TypeScript or ESLint errors
+- [ ] No TypeScript errors
+- [ ] No ESLint warnings or errors
+- [ ] Added/updated types if needed
+- [ ] Tested on mobile/tablet/desktop (if UI change)
 - [ ] Added meaningful commit message(s)
+- [ ] Checked for console errors
 
-## Additional notes
+## Additional context
 
 <!-- Any additional context, challenges faced, or future improvements -->
 
+## Related issues
+
+<!-- Link any related issues here -->
+<!-- Example: Closes #123, Fixes #456 -->
+
 ---
 
-Thank you for contributing to Design Playground! 🚀
+Thank you for contributing to Moodboard! 🎨

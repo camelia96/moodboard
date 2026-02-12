@@ -1,0 +1,57 @@
+[
+  {
+    "id": "1",
+    "title": "Gradient Button Animation",
+    "description": "Beautiful gradient animation on hover with smooth color transitions. Perfect for call-to-action buttons and interactive elements.",
+    "image": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=800&auto=format&fit=crop",
+    "url": "https://dribbble.com",
+    "tags": ["buttons", "gradients", "micro-interactions", "animations"],
+    "category": "UI Design",
+    "dateAdded": "2024-02-12",
+    "addedBy": "Design Team"
+  },
+  {
+    "id": "2",
+    "title": "Typography Pairing: Playfair & Inter",
+    "description": "Elegant serif and sans-serif combination. Playfair Display for headlines with Inter for body text creates a perfect balance of personality and readability.",
+    "image": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&auto=format&fit=crop",
+    "url": "",
+    "tags": ["fonts", "pairing", "headers", "typography"],
+    "category": "Typography",
+    "dateAdded": "2024-02-11",
+    "addedBy": "Design Team"
+  },
+  {
+    "id": "3",
+    "title": "Ocean Color Palette",
+    "description": "Calming ocean-inspired color scheme with deep blues, aqua greens, and sandy neutrals. Perfect for wellness and nature-focused applications.",
+    "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&auto=format&fit=crop",
+    "url": "",
+    "tags": ["palettes", "blue", "ocean", "nature", "colors"],
+    "category": "Color",
+    "dateAdded": "2024-02-10",
+    "addedBy": "Design Team"
+  },
+  {
+    "id": "4",
+    "title": "Playful Character Illustration Style",
+    "description": "Bold, friendly character design with simple shapes and vibrant colors. Great reference for approachable brand illustrations.",
+    "image": "https://images.unsplash.com/photo-1618004652321-13a63e576b80?w=800&auto=format&fit=crop",
+    "url": "https://www.behance.net",
+    "tags": ["vector", "style", "characters", "illustration"],
+    "category": "Illustration",
+    "dateAdded": "2024-02-09",
+    "addedBy": "Design Team"
+  },
+  {
+    "id": "5",
+    "title": "Clean Dashboard Layout",
+    "description": "Modern dashboard design with excellent visual hierarchy, clear data visualization, and intuitive navigation. Notice the effective use of whitespace and card-based layout.",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop",
+    "url": "",
+    "tags": ["layout", "dashboard", "data-viz", "cards", "ui"],
+    "category": "UI Design",
+    "dateAdded": "2024-02-08",
+    "addedBy": "Design Team"
+  }
+]

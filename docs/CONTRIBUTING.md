@@ -1,16 +1,16 @@
-# Contributing to Design Playground
+# Contributing to Moodboard
 
-Welcome! This guide will help you add your own playground to the project. Don't worry if you're new to this - we'll walk through everything step by step.
+Welcome! This guide will help you contribute features and improvements to Moodboard. Whether you're fixing bugs, adding new functionality, or improving existing features, we're excited to have your contributions!
 
 ## Overview
 
-Contributing to Design Playground involves:
+Contributing to Moodboard involves:
 
 1. Setting up your local environment
-2. Creating your playground using the starter template
-3. Building your experiments
-4. Testing locally
-5. Submitting a pull request
+2. Choosing a feature to work on
+3. Building and testing your changes
+4. Submitting a pull request
+5. Responding to code review feedback
 
 ## Prerequisites
 
@@ -24,13 +24,13 @@ Before you start, make sure you have:
 ## Step 1: Fork and Clone
 
 1. **Fork the repository** (if not already done)
-   - Visit the [repository on GitHub](https://github.com/mosaic-design-system/design-playground)
+   - Visit the [repository on GitHub](https://github.com/mosaic-design-system/moodboard)
    - Click "Fork" in the top-right corner
 
 2. **Clone your fork**
    ```bash
-   git clone https://github.com/YOUR-USERNAME/design-playground.git
-   cd design-playground
+   git clone https://github.com/YOUR-USERNAME/moodboard.git
+   cd moodboard
    ```
 
 3. **Install dependencies**
@@ -43,273 +43,336 @@ Before you start, make sure you have:
    npm run dev
    ```
 
-   Visit `http://localhost:3000` to see the site running locally.
+   Visit `http://localhost:3000` to see Moodboard running locally.
 
-## Step 2: Create a New Branch
+## Step 2: Choose What to Work On
+
+### Beginner-Friendly Features
+
+Perfect for your first contribution:
+
+#### 1. Wire Up Add Inspiration Form ⭐ Good First Issue!
+
+**What to do:** Make the "Add Inspiration" form functional so it saves new items to the JSON file.
+
+**Files to modify:**
+- `src/app/add/page.tsx` - Update form submission handler
+- `src/data/inspiration.json` - This is where new items will be saved
+
+**Steps:**
+1. Remove the alert in the `handleSubmit` function
+2. Create a function to read the current JSON file
+3. Add the new item to the array
+4. Write the updated JSON back to the file
+5. Navigate to home page after successful submission
+
+**Tip:** For now, use `fs` on the server side. In the future, we'll migrate to a real database.
+
+#### 2. Add Search Functionality
+
+**What to do:** Add a search bar to the home page that filters inspiration items.
+
+**Files to modify:**
+- `src/app/page.tsx` - Add search input and filtering logic
+- `src/components/inspiration-grid.tsx` - Pass filtered items
+
+**Steps:**
+1. Add a search input above the grid
+2. Use `useState` to track the search query
+3. Use `searchItems(query)` from `src/lib/data.ts`
+4. Display filtered results in the grid
+
+#### 3. Add Category Filtering
+
+**What to do:** Add category filter buttons/dropdown on the home page.
+
+**Files to modify:**
+- `src/app/page.tsx` - Add category filter UI and logic
+- `src/lib/types.ts` - Reference the `Category` type
+
+**Steps:**
+1. Add filter buttons for each category
+2. Use `useState` to track selected category
+3. Use `getItemsByCategory(category)` from `src/lib/data.ts`
+4. Display filtered results in the grid
+
+#### 4. Add Tag Filtering
+
+**What to do:** Make tags clickable to filter by that tag.
+
+**Files to modify:**
+- `src/app/page.tsx` - Add tag filtering logic
+- `src/components/inspiration-card.tsx` - Make tags clickable
+
+**Steps:**
+1. Make tags in cards clickable (Link or button)
+2. Pass selected tag to home page via URL params
+3. Use `getItemsByTag(tag)` from `src/lib/data.ts`
+4. Display filtered results
+
+### Intermediate Features
+
+#### 5. Add Collections/Boards
+
+**What to do:** Allow users to create collections and organize inspiration items into boards.
+
+**New files to create:**
+- `src/lib/collections.ts` - Collection data functions
+- `src/data/collections.json` - Collection storage
+- `src/app/collections/page.tsx` - Collections list page
+- `src/app/collections/[id]/page.tsx` - Individual collection page
+
+#### 6. Add Favorites System
+
+**What to do:** Let users mark items as favorites.
+
+**Files to modify:**
+- `src/lib/types.ts` - Add `isFavorited` property
+- `src/components/inspiration-card.tsx` - Add favorite button
+- Storage for favorite state (localStorage or JSON file)
+
+#### 7. Add Image Upload
+
+**What to do:** Allow users to upload images instead of only using URLs.
+
+**Files to modify:**
+- `src/app/add/page.tsx` - Add file input
+- Create API route for file upload: `src/app/api/upload/route.ts`
+- Store images in `public/uploads/`
+
+### Advanced Features
+
+#### 8. Migrate to Database
+
+**What to do:** Replace JSON file storage with a real database (SQLite, PostgreSQL, etc.).
+
+**Steps:**
+1. Choose a database (recommend starting with SQLite for simplicity)
+2. Set up database schema
+3. Create migration from JSON to database
+4. Update all data functions in `src/lib/data.ts`
+5. Add database client configuration
+
+#### 9. Add User Authentication
+
+**What to do:** Add login/signup so users can track their own contributions.
+
+**Recommended:** Use NextAuth.js or Clerk
+
+**Steps:**
+1. Set up authentication provider
+2. Add login/signup pages
+3. Protect routes that require authentication
+4. Associate inspiration items with users
+
+#### 10. Add Sharing Functionality
+
+**What to do:** Generate shareable links for items or collections.
+
+**Steps:**
+1. Create shareable URL structure
+2. Add "Share" button to items
+3. Generate and copy share links
+4. Optional: Add social media share buttons
+
+## Step 3: Create a New Branch
 
 Always create a new branch for your changes:
 
 ```bash
-git checkout -b add-my-playground
+git checkout -b feature/add-search
 ```
 
-Use a descriptive branch name like `add-jane-playground` or `add-animation-experiments`.
+Use descriptive branch names:
+- `feature/add-search` for new features
+- `fix/broken-image` for bug fixes
+- `docs/update-readme` for documentation
+- `refactor/data-layer` for refactoring
 
-## Step 3: Create Your Playground
+## Step 4: Build Your Feature
 
-### Copy the Starter Template
+### Code Guidelines
 
-```bash
-cp -r src/playgrounds/starter-template src/playgrounds/your-name
+#### File Structure
+
+```
+src/
+├── app/              # Next.js pages and routes
+├── components/       # React components
+├── lib/             # Utility functions and business logic
+└── data/            # JSON data storage (temporary)
 ```
 
-Replace `your-name` with your actual name (e.g., `jane-doe`). Use lowercase and hyphens.
+#### TypeScript Best Practices
 
-### Update Your Metadata
-
-Open `src/playgrounds/your-name/metadata.ts` and fill in your information:
+- Use existing types from `src/lib/types.ts`
+- Create new types when needed
+- Avoid `any` type
+- Use type inference when possible
 
 ```typescript
-import { PlaygroundMetadata } from "@/types/playground";
+// Good
+const items: InspirationItem[] = getAllItems();
 
-export const metadata: PlaygroundMetadata = {
-  name: "Jane Doe",
-  slug: "jane-doe",
-  title: "Jane's Creative Lab",
-  description: "Exploring micro-interactions and playful UI patterns",
-  avatar: "/avatars/jane-doe.jpg", // Optional
-  tags: ["animations", "buttons", "interactions"],
-  experiments: [
-    {
-      id: "hover-effects",
-      title: "Hover Effects Collection",
-      description: "Various button hover effects and transitions",
-      component: "HoverEffects",
-    },
-  ],
-};
+// Bad
+const items: any = getAllItems();
 ```
 
-**Tips:**
-- `slug` should match your folder name
-- `tags` help people find your work
-- Add more experiments as you build them
+#### Component Patterns
 
-### Create Your Components
-
-1. **Create a component file** in `src/playgrounds/your-name/components/`:
-
+1. **Use "use client" for interactive components**
    ```typescript
-   // src/playgrounds/your-name/components/HoverEffects.tsx
    "use client";
 
-   import { Button } from "@/components/ui/button";
-
-   export function HoverEffects() {
-     return (
-       <div className="flex flex-col gap-6 p-8">
-         <div>
-           <h3 className="text-lg font-semibold mb-2">Hover Effects</h3>
-           <p className="text-sm text-muted-foreground mb-4">
-             Try hovering over these buttons
-           </p>
-         </div>
-
-         <div className="flex gap-4">
-           <Button className="transition-all hover:scale-110">
-             Scale on Hover
-           </Button>
-           <Button className="relative overflow-hidden group">
-             <span className="relative z-10">Slide Effect</span>
-             <span className="absolute inset-0 bg-primary/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform" />
-           </Button>
-         </div>
-       </div>
-     );
-   }
+   import { useState } from "react";
    ```
 
-2. **Use "use client" for interactive components**
-   - Add `"use client"` at the top if you use state or event handlers
-
-3. **Import shadcn/ui components**
+2. **Import UI components from shadcn/ui**
    ```typescript
    import { Button } from "@/components/ui/button";
    import { Card, CardContent } from "@/components/ui/card";
    ```
 
-4. **Import icons from lucide-react**
+3. **Use icons from lucide-react**
    ```typescript
-   import { Heart, Star, Sparkles } from "lucide-react";
+   import { Search, Filter, Heart } from "lucide-react";
    ```
 
-### Add Your Playground to the Registry
-
-Open `src/lib/playgrounds.ts` and add your playground:
+#### Styling with Tailwind
 
 ```typescript
-import { metadata as exampleMetadata } from "@/playgrounds/example/metadata";
-import { metadata as yourMetadata } from "@/playgrounds/your-name/metadata";
+// Responsive design
+className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
 
-const playgroundRegistry: PlaygroundMetadata[] = [
-  exampleMetadata,
-  yourMetadata, // Add this line
-];
+// Hover effects
+className="transition-all duration-300 hover:scale-105 hover:shadow-lg"
+
+// Dark mode support
+className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
 ```
 
-### Register Your Components
+### Data Management
 
-Open `src/app/playground/[designer]/page.tsx` and add your components:
+**Current approach (JSON file):**
+- Read/write to `src/data/inspiration.json`
+- Use functions from `src/lib/data.ts`
+- Keep functions pure and predictable
 
-```typescript
-// Add your imports
-import { HoverEffects } from "@/playgrounds/your-name/components/HoverEffects";
+**Future approach (Database):**
+- Once we migrate to a database, update functions in `src/lib/data.ts`
+- Keep the same function signatures so components don't break
 
-// Add to the registry
-const componentRegistry: Record<string, React.ComponentType> = {
-  AnimatedButton,
-  GradientCard,
-  LoadingStates,
-  HoverEffects, // Add this line
-};
-```
+### Testing Your Changes
 
-## Step 4: Test Locally
+1. **Test in development**
+   ```bash
+   npm run dev
+   ```
+   - Test all user interactions
+   - Check responsive design (mobile, tablet, desktop)
+   - Verify no console errors
 
-1. **Check the home page**
-   - Visit `http://localhost:3000`
-   - Your playground card should appear in the gallery
-
-2. **Visit your playground**
-   - Click on your playground card
-   - Or navigate to `http://localhost:3000/playground/your-name`
-   - All your experiments should be visible
-
-3. **Test the build**
+2. **Test the build**
    ```bash
    npm run build
    ```
+   - Fix any TypeScript errors
+   - Fix any linting errors
 
-   Make sure there are no errors.
+3. **Test in production mode**
+   ```bash
+   npm start
+   ```
 
-## Step 5: Optional - Add an Avatar
-
-1. Add your photo to `public/avatars/your-name.jpg`
-2. Update the `avatar` field in your metadata
-3. Recommended size: 200x200px, keep file under 100KB
-
-## Step 6: Commit Your Changes
+## Step 5: Commit Your Changes
 
 1. **Check what's changed**
    ```bash
    git status
    ```
 
-2. **Add your files**
+2. **Stage your files**
    ```bash
-   git add src/playgrounds/your-name
-   git add src/lib/playgrounds.ts
-   git add src/app/playground/[designer]/page.tsx
-   git add public/avatars/your-name.jpg  # if you added one
+   git add src/app/page.tsx
+   git add src/components/search-bar.tsx
    ```
 
 3. **Commit with a clear message**
    ```bash
-   git commit -m "Add Jane's playground with hover effects"
+   git commit -m "Add search functionality to filter inspiration items"
    ```
 
-## Step 7: Push and Create Pull Request
+**Good commit messages:**
+- "Add search bar to home page"
+- "Fix broken image links in inspiration cards"
+- "Refactor data functions for better performance"
+
+**Bad commit messages:**
+- "Update files"
+- "Fix stuff"
+- "WIP"
+
+## Step 6: Push and Create Pull Request
 
 1. **Push to your fork**
    ```bash
-   git push origin add-my-playground
+   git push origin feature/add-search
    ```
 
 2. **Create a Pull Request**
    - Go to the repository on GitHub
    - Click "Compare & pull request"
    - Fill in the PR template:
-     - Describe your playground
-     - List your experiments
-     - Add screenshots or GIFs if possible
+     - **Type of change:** Feature / Bug fix / Documentation / Refactor
+     - **Description:** What does this PR do?
+     - **Testing:** How did you test this?
+     - **Screenshots:** Add before/after images if applicable
    - Click "Create pull request"
 
 3. **Wait for review**
    - A maintainer will review your PR
-   - They may ask for changes
+   - They may ask questions or request changes
+   - Respond to feedback and make updates
    - Once approved, your work will be merged!
 
-## Tips for Great Experiments
+## Code Review Process
 
-### Use Tailwind Effectively
+### What Reviewers Look For
 
-```typescript
-// Hover effects
-className="transition-all hover:scale-105 hover:shadow-lg"
+- **Functionality:** Does it work as expected?
+- **Code Quality:** Is it readable and maintainable?
+- **Type Safety:** Are TypeScript types used correctly?
+- **Performance:** Does it perform well?
+- **Accessibility:** Is it usable for everyone?
+- **Mobile Responsive:** Does it work on all screen sizes?
 
-// Animations
-className="animate-spin"  // Built-in animation
-className="animate-bounce"
+### Responding to Feedback
 
-// Gradients
-className="bg-gradient-to-r from-blue-500 to-purple-600"
-
-// Responsive design
-className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-```
-
-### Add Custom Animations
-
-```typescript
-// In your component
-<div className="animate-[wiggle_1s_ease-in-out_infinite]">
-  Wiggle animation
-</div>
-```
-
-### Use shadcn/ui Components
-
-Available components:
-- Button, Card, Badge, Avatar
-- Alert, Dialog, Popover, Tooltip
-- Input, Select, Checkbox, Switch
-- And many more at [ui.shadcn.com](https://ui.shadcn.com)
-
-### Be Creative!
-
-Some ideas:
-- Button variations with different hover effects
-- Card designs with gradients and animations
-- Loading states and skeleton screens
-- Form elements with custom styling
-- Interactive toggles and switches
-- Micro-interactions and transitions
-- Color palette explorations
-- Layout experiments
+- Be open to suggestions
+- Ask questions if something is unclear
+- Make requested changes promptly
+- Thank reviewers for their time
 
 ## Troubleshooting
 
-### "Component not found" error
-
-Make sure you:
-1. Created the component file
-2. Exported the component (use `export function ComponentName`)
-3. Added it to `componentRegistry` in `page.tsx`
-4. The component name in metadata matches exactly
-
 ### Build errors
 
-Run:
 ```bash
 npm run build
 ```
 
 Fix any TypeScript or ESLint errors shown.
 
+### Type errors
+
+- Check that you're using the correct types from `src/lib/types.ts`
+- Make sure all imports are correct
+- Use TypeScript's inference when possible
+
 ### Changes not appearing
 
 1. Make sure the dev server is running
-2. Try refreshing the browser
+2. Try refreshing the browser (hard refresh: Cmd+Shift+R / Ctrl+Shift+R)
 3. Check the terminal for errors
 4. Restart the dev server if needed
 
@@ -325,39 +388,59 @@ Follow the prompts to resolve conflicts.
 
 ## Getting Help
 
-- Check existing playgrounds for examples
-- Look at the starter template
+- Check existing code for examples
 - Ask in the team chat
 - Open an issue on GitHub
-- Read the [Next.js docs](https://nextjs.org/docs)
-- Check [Tailwind CSS docs](https://tailwindcss.com/docs)
+- Read the documentation:
+  - [Next.js docs](https://nextjs.org/docs)
+  - [Tailwind CSS docs](https://tailwindcss.com/docs)
+  - [shadcn/ui components](https://ui.shadcn.com)
 
-## Code Guidelines
+## Feature Ideas
 
-- Use TypeScript for type safety
-- Follow existing code style
-- Keep components focused and simple
-- Add comments for complex logic
-- Use descriptive variable names
-- Test your code before submitting
+Looking for something to work on? Here's a prioritized list:
+
+### High Priority
+1. ✅ Wire up add form to save to JSON
+2. 🔍 Add search functionality
+3. 🏷️ Add tag filtering
+4. 🎨 Add category filtering
+5. 🌙 Add dark mode toggle
+
+### Medium Priority
+6. 📁 Add collections/boards
+7. ❤️ Add favorites system
+8. 🖼️ Add image upload
+9. 📱 Improve mobile experience
+10. ⌨️ Add keyboard navigation
+
+### Low Priority / Future
+11. 🗄️ Migrate to real database
+12. 🔐 Add user authentication
+13. 🔗 Add shareable links
+14. 📊 Add analytics dashboard
+15. 🎯 Add AI tag suggestions
+16. 🌍 Add multi-language support
+17. 📥 Add bulk import
+18. 📤 Add export functionality
 
 ## What Happens Next?
 
 1. A maintainer reviews your PR
 2. You may be asked to make changes
-3. Once approved, your PR is merged
-4. Your playground goes live!
-5. The team can see and learn from your work
+3. Once approved, your PR is merged to main
+4. Your feature goes live!
+5. The team can use and enjoy your contribution
 
-## Ideas for Future Contributions
+## Recognition
 
-After your first playground:
-- Add more experiments to your playground
-- Try different animation libraries
-- Experiment with 3D effects
-- Build complex interactive components
-- Create themed variations
-- Add dark mode support
-- Build responsive layouts
+All contributors will be:
+- Listed in the project's contributors
+- Credited in release notes
+- Celebrated in team updates
+
+Thank you for contributing to Moodboard! Your work helps make this tool better for everyone on the team.
+
+---
 
 Happy building! We're excited to see what you create!

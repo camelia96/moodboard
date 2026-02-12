@@ -1,18 +1,18 @@
-# Design Playground
+# Moodboard
 
-A collaborative space for design experiments and creative UI explorations. Built for the Mosaic Design System team to learn, experiment, and share creative work.
+A collaborative mood board application for collecting and sharing visual design inspiration. Built for the Mosaic Design System team to curate, discover, and get inspired by beautiful design.
 
-## What is this?
+## What is Moodboard?
 
-Design Playground is a place where designers can:
+Moodboard is a team inspiration hub where designers can:
 
-- 🎨 Experiment with UI components and patterns
-- ✨ Create and share animations and micro-interactions
-- 🚀 Practice modern web development with Next.js, Tailwind, and shadcn/ui
-- 🤝 Learn Git workflows and pull request submissions
-- 💡 Get creative without constraints
+- 🎨 **Collect Visual Inspiration** - Save UI designs, color palettes, typography, and illustrations
+- 🔍 **Discover Ideas** - Browse curated design inspiration from the team
+- 🏷️ **Organize by Tags** - Categorize and find inspiration with tags and categories
+- 🤝 **Build Features Together** - Contribute new functionality through pull requests
+- 💡 **Stay Inspired** - Keep a living collection of ideas that spark creativity
 
-Each team member gets their own "playground" - a dedicated space to showcase their experiments. The main branch is protected, and all contributions go through pull requests for learning and collaboration.
+Unlike traditional mood board tools, Moodboard is collaborative and customizable. The team can add features, improve search, build collections, and shape the tool to fit our workflow.
 
 ## Tech Stack
 
@@ -35,8 +35,8 @@ Each team member gets their own "playground" - a dedicated space to showcase the
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/mosaic-design-system/design-playground.git
-   cd design-playground
+   git clone https://github.com/mosaic-design-system/moodboard.git
+   cd moodboard
    ```
 
 2. **Install dependencies**
@@ -53,7 +53,7 @@ Each team member gets their own "playground" - a dedicated space to showcase the
 
 4. **Open your browser**
 
-   Visit [http://localhost:3000](http://localhost:3000) to see the site.
+   Visit [http://localhost:3000](http://localhost:3000) to see Moodboard.
 
 ### Making Changes
 
@@ -62,52 +62,113 @@ The development server has hot reload - your changes will appear instantly as yo
 ## Project Structure
 
 ```
-design-playground/
+moodboard/
 ├── src/
-│   ├── app/                    # Next.js app routes
-│   │   ├── page.tsx           # Home page
-│   │   └── playground/
-│   │       ├── page.tsx       # Playgrounds directory
-│   │       └── [designer]/
-│   │           └── page.tsx   # Individual playground page
+│   ├── app/                     # Next.js app routes
+│   │   ├── page.tsx            # Home page (inspiration gallery)
+│   │   ├── add/
+│   │   │   └── page.tsx        # Add new inspiration
+│   │   └── item/[id]/
+│   │       └── page.tsx        # Individual item detail page
 │   ├── components/
-│   │   ├── ui/                # shadcn/ui components
-│   │   ├── nav.tsx           # Navigation
-│   │   └── playground-card.tsx
+│   │   ├── ui/                 # shadcn/ui components
+│   │   ├── nav.tsx            # Navigation
+│   │   ├── inspiration-card.tsx
+│   │   └── inspiration-grid.tsx
 │   ├── lib/
-│   │   ├── utils.ts          # Utility functions
-│   │   └── playgrounds.ts    # Playground registry
-│   ├── playgrounds/
-│   │   ├── example/          # Example playground
-│   │   └── starter-template/ # Template for new playgrounds
-│   └── types/
-│       └── playground.ts     # TypeScript types
+│   │   ├── utils.ts           # Utility functions
+│   │   ├── types.ts           # TypeScript interfaces
+│   │   └── data.ts            # Data management functions
+│   └── data/
+│       └── inspiration.json   # Inspiration items storage
 ├── public/
-│   └── avatars/              # Profile images
+│   └── uploads/               # User-uploaded images (future)
 └── docs/
-    └── CONTRIBUTING.md       # Contribution guide
+    └── CONTRIBUTING.md        # Contribution guide
 ```
 
-## Contributing
+## How to Add Inspiration
 
-We welcome contributions from all team members! Here's how to add your playground:
+Currently, inspiration items are stored in `src/data/inspiration.json`. To add a new item:
 
-1. **Read the contribution guide**: [CONTRIBUTING.md](docs/CONTRIBUTING.md)
-2. **Copy the starter template**: `src/playgrounds/starter-template`
-3. **Create your experiments**: Build creative components
-4. **Submit a pull request**: Share your work with the team
+1. Open `src/data/inspiration.json`
+2. Add a new object following this structure:
 
-See the full guide in [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for detailed instructions.
+```json
+{
+  "id": "6",
+  "title": "Your Inspiration Title",
+  "description": "Detailed description of what makes this inspiring...",
+  "image": "https://images.unsplash.com/photo-...",
+  "url": "https://source-link.com",
+  "tags": ["tag1", "tag2", "tag3"],
+  "category": "UI Design",
+  "dateAdded": "2024-02-12",
+  "addedBy": "Your Name"
+}
+```
 
-## Example Playgrounds
+**Categories:** UI Design, Illustration, Typography, Color, Photography, Other
 
-Check out the example playground to see what's possible:
+**Pro tip:** Use [Unsplash](https://unsplash.com) for high-quality, free images!
 
-- **Animated Buttons** - Hover effects and transitions
-- **Gradient Cards** - Animated gradient backgrounds
-- **Loading States** - Various loading animations
+## Contributing Features
 
-Browse all playgrounds at `/playground` or click through the gallery on the home page.
+Moodboard is built collaboratively. We encourage the team to add new features and improvements! Here are some ideas:
+
+### Feature Ideas (Great for PRs!)
+
+**Beginner-Friendly:**
+- ✅ Wire up the "Add Inspiration" form to save to JSON
+- 🔍 Add search functionality to filter items
+- 🏷️ Add tag filtering on the home page
+- 🎨 Add category filtering
+- 🌙 Add dark mode toggle
+
+**Intermediate:**
+- 📁 Add collections/boards feature
+- ❤️ Add favorites/likes system
+- 🖼️ Add image upload (instead of URL only)
+- 📱 Improve mobile responsive design
+- ⌨️ Add keyboard navigation
+
+**Advanced:**
+- 🗄️ Migrate from JSON to a real database (SQLite, PostgreSQL, etc.)
+- 🔐 Add user authentication
+- 🔗 Add shareable links for individual items or collections
+- 📊 Add analytics (most liked, most viewed, etc.)
+- 🎯 Add AI-powered tag suggestions
+
+See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for detailed contribution guidelines.
+
+## Data Structure
+
+### InspirationItem Interface
+
+```typescript
+interface InspirationItem {
+  id: string;
+  title: string;
+  description: string;
+  image: string;        // URL or path
+  url?: string;         // External source link
+  tags: string[];
+  category: Category;   // UI Design | Illustration | Typography | Color | Photography | Other
+  dateAdded: string;    // ISO date string
+  addedBy: string;      // GitHub username or name
+}
+```
+
+### Available Functions
+
+Located in `src/lib/data.ts`:
+
+- `getAllItems()` - Get all inspiration items
+- `getItemById(id)` - Get single item by ID
+- `getItemsByTag(tag)` - Filter by tag
+- `getItemsByCategory(category)` - Filter by category
+- `getAllTags()` - Get all unique tags
+- `searchItems(query)` - Search titles, descriptions, and tags
 
 ## Available Scripts
 
@@ -115,6 +176,18 @@ Browse all playgrounds at `/playground` or click through the gallery on the home
 - `npm run build` - Build for production
 - `npm start` - Start production server
 - `npm run lint` - Run ESLint
+
+## Example Inspiration Items
+
+Moodboard comes with 5 example items:
+
+1. **Gradient Button Animation** - UI Design with hover effects
+2. **Typography Pairing: Playfair & Inter** - Font combinations
+3. **Ocean Color Palette** - Calming blue color scheme
+4. **Playful Character Illustration** - Bold illustration style
+5. **Clean Dashboard Layout** - Modern dashboard design
+
+Browse them at [http://localhost:3000](http://localhost:3000) after starting the dev server!
 
 ## Learning Resources
 
@@ -131,6 +204,24 @@ New to these technologies? Check out these resources:
 - Open an issue on GitHub
 - Ask in the team channel
 - Check the [CONTRIBUTING.md](docs/CONTRIBUTING.md) guide
+
+## Roadmap
+
+**v1.0 (Current)** - Basic mood board functionality
+- ✅ Display inspiration grid
+- ✅ View individual items
+- ✅ Add form UI (submission not wired)
+
+**v1.1 (Next)** - Enhanced functionality
+- 🚧 Wire up add form
+- 🚧 Add search
+- 🚧 Add filtering
+
+**v2.0 (Future)** - Advanced features
+- 🔮 Collections/boards
+- 🔮 User authentication
+- 🔮 Database migration
+- 🔮 Image uploads
 
 ## License
 

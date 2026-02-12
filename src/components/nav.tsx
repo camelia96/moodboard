@@ -9,9 +9,9 @@ export function Nav() {
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center space-x-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              <span className="text-lg font-bold">DP</span>
+              <span className="text-lg font-bold">MB</span>
             </div>
-            <span className="font-semibold text-lg">Design Playground</span>
+            <span className="font-semibold text-lg">Moodboard</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-6">
@@ -22,10 +22,10 @@ export function Nav() {
               Home
             </Link>
             <Link
-              href="/playground"
+              href="/add"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
-              Playgrounds
+              Add Inspiration
             </Link>
           </div>
         </div>
@@ -33,7 +33,7 @@ export function Nav() {
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon" asChild>
             <a
-              href="https://github.com/mosaic-design-system/design-playground"
+              href="https://github.com/mosaic-design-system/moodboard"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Repository"
