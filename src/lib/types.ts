@@ -17,3 +17,5 @@ export type Category =
   | "Color"
   | "Photography"
   | "Other";
+
+  export type CategoryFilter = Category | "All"

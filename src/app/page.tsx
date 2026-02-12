@@ -1,11 +1,20 @@
+"use client"
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { InspirationGrid } from "@/components/inspiration-grid";
-import { getAllItems } from "@/lib/data";
+import { getAllItems, getItemsByCategory } from "@/lib/data";
 import { Sparkles, Plus } from "lucide-react";
+import { useState } from "react";
+import { CategoryFilter } from "@/lib/types";
+
+const categoriesFilter: CategoryFilter[] = ["All", "UI Design", "Illustration", "Typography", "Color", "Photography", "Other"]
 
 export default function Home() {
   const items = getAllItems();
+
+  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("All");
+
+  const filteredItems = selectedCategory === "All" ? items : getItemsByCategory(selectedCategory);
 
   return (
     <div className="flex flex-col">
@@ -62,8 +71,18 @@ export default function Home() {
               Visual inspiration gathered by our design team
             </p>
           </div>
+          {/** Filter Items by Category */}
+          <div className="flex gap-4 mb-4 flex-wrap">
+            {categoriesFilter.map((c, i) =>
+              <Button
+                key={i}
+                onClick={() => setSelectedCategory(c)}>
+                {c}
+              </Button>
+            )}
+          </div>
 
-          <InspirationGrid items={items} />
+          <InspirationGrid items={filteredItems} />
         </div>
       </section>
 
