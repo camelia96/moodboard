@@ -59,6 +59,21 @@ Unlike traditional mood board tools, Moodboard is collaborative and customizable
 
 The development server has hot reload - your changes will appear instantly as you edit files.
 
+### Verify Your Setup
+
+After running `npm run dev`, check that:
+
+- ✅ Server starts on http://localhost:3000 (or your specified port)
+- ✅ Home page displays 5 inspiration items in a grid
+- ✅ Clicking a card navigates to the item detail page
+- ✅ "Add Inspiration" link in navigation works
+- ✅ No console errors in browser devtools
+
+If you see any issues, check:
+- Node.js is version 18 or higher: `node --version`
+- All dependencies installed: `npm install`
+- No port conflicts (try a different port: `npm run dev -- -p 3001`)
+
 ## Project Structure
 
 ```
@@ -112,34 +127,26 @@ Currently, inspiration items are stored in `src/data/inspiration.json`. To add a
 
 **Pro tip:** Use [Unsplash](https://unsplash.com) for high-quality, free images!
 
-## Contributing Features
+## 🤝 Contributing
 
-Moodboard is built collaboratively. We encourage the team to add new features and improvements! Here are some ideas:
+We welcome contributions from all team members! Moodboard is built collaboratively.
 
-### Feature Ideas (Great for PRs!)
+**Ready to contribute?**
 
-**Beginner-Friendly:**
-- ✅ Wire up the "Add Inspiration" form to save to JSON
-- 🔍 Add search functionality to filter items
-- 🏷️ Add tag filtering on the home page
-- 🎨 Add category filtering
-- 🌙 Add dark mode toggle
+- 📋 [View Open Issues](https://github.com/mosaic-design-system/moodboard/issues) - Find tasks to work on
+- ⭐ [Good First Issues](https://github.com/mosaic-design-system/moodboard/issues?q=is%3Aissue+is%3Aopen+label%3A%22good-first-issue%22) - Perfect for getting started
+- 📖 [Contributing Guide](docs/CONTRIBUTING.md) - Full guide with feature ideas and best practices
 
-**Intermediate:**
-- 📁 Add collections/boards feature
-- ❤️ Add favorites/likes system
-- 🖼️ Add image upload (instead of URL only)
-- 📱 Improve mobile responsive design
-- ⌨️ Add keyboard navigation
+**Feature Ideas:**
 
-**Advanced:**
-- 🗄️ Migrate from JSON to a real database (SQLite, PostgreSQL, etc.)
-- 🔐 Add user authentication
-- 🔗 Add shareable links for individual items or collections
-- 📊 Add analytics (most liked, most viewed, etc.)
-- 🎯 Add AI-powered tag suggestions
+Check out [CONTRIBUTING.md](docs/CONTRIBUTING.md) for a detailed list of features to build, including:
+- Wire up the "Add Inspiration" form
+- Add search and filtering
+- Dark mode toggle
+- Collections/boards feature
+- And many more!
 
-See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for detailed contribution guidelines.
+All feature ideas are also tracked as [GitHub issues](https://github.com/mosaic-design-system/moodboard/issues) so you can pick one and start coding.
 
 ## Data Structure
 
